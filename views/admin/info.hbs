@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col s12 m10">
+    <h3>{{ title }}</h3>
+  </div>
+</div>
+{{#if info.length}}
+<table class="responsive-table striped">
+  <thead></thead>
+  <tbody>
+    {{#each info}}
+    <tr>
+      <td>
+        <h5 style="color:#00796b">{{ title }}</h5>
+        {{#if description}}
+        <p style="color:grey">{{ description }}</p>
+        {{/if}}
+        <p>{{ value }}</p>
+      </td>
+      <td class="right">
+        <a href="/admin/info/{{_id}}/edit?allow=true" class="waves-effect waves-light btn"><i
+            class="material-icons">edit</i></a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+{{else}}
+<p>Информации нет</p>
+{{/if}}

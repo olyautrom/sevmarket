@@ -1,0 +1,38 @@
+<h3>{{ title }}</h3>
+<br/>
+<form action="/admin/news/add?_csrf={{csrf}}" method="POST" enctype="multipart/form-data">
+    <div class="input-field">
+        <input id="title" name="title" type="text" class="validate" required>
+        <label for="title">Название</label>
+        <span class="helper-text" data-error="Введите название"></span>
+    </div>
+    <div class="input-field">
+        <input id="date" name="date" type="date" class="validate" required>
+        <label for="date">Дата</label>
+        <span class="helper-text" data-error="Выберите дату"></span>
+    </div>
+    <div class="file-field input-field">
+        <div class="btn">
+            <span>Изображение</span>
+            <input type="file" id="newsImage" name="newsImage" accept="image/jpeg, image/jpg, image/png" required>
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+            <span class="helper-text" data-error="Выберите изображение"></span>
+        </div>
+    </div>
+
+    <div class="input-field">
+        <textarea id="annotation" name="annotation" class="materialize-textarea validate" required></textarea>
+        <label for="annotation">Аннотация</label>
+        <span class="helper-text" data-error="Напишите аннотацию"></span>
+    </div>
+
+
+    <div class="input-field">
+        <textarea id="content" name="content" class="materialize-textarea validate" required></textarea>
+        <label for="content">Текст новости</label>
+        <span class="helper-text" data-error="Напишите текст новости"></span>
+    </div>
+    <button class="btn btn-primary">Создать</button>
+</form>

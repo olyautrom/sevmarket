@@ -1,0 +1,30 @@
+<div class="current_news-page">
+    <div class="wrapper">
+        <ul class="breadcrumb">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/news">{{ title }}</a></li>
+            <li>{{ newsTitle }}</li>
+        </ul>
+        <h1>{{ title }}</h1>
+
+        <div class="news-items">
+            <div class="news__item">
+                <img src="{{ newsBlock.newsImage }}" alt="{{ newsTitle }}">
+                <div class="news__item-inner">
+                    <p class="news__data">{{ newsBlock.date }}</p>
+                    <p class="news__title">{{ newsBlock.title }}</p>
+                    <p class="news__intro">{{ newsBlock.annotation }}</p>
+                </div>
+            </div>
+
+            <div class="news-entire-text">
+                <div class="news-entire-text_block-cover current-news-text_block-1">
+                    <div class="news-entire-text_block">{{ newsBlock.content }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-center">
+            <a href="/news" class="button">Другие новости</a>
+        </div>
+    </div>
+</div>

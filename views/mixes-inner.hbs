@@ -1,0 +1,42 @@
+<div class="wrapper">
+    <ul class="breadcrumb">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/#production">Продукция</a></li>
+        <li><a href="/mixes">{{ title }}</a></li>
+    </ul>
+    <h1>{{ title }}</h1>
+    <div class="production-menu">
+        <h5><a href="#{{ bakery.value }}">{{ bakery.name }}</a></h5>
+        <h5><a href="#{{ confectionery.value }}">{{ confectionery.name }}</a></h5>
+    </div>
+</div>
+<div class="product-section" id="{{ bakery.value }}">
+    <div class="wrapper">
+        <h2>{{ bakery.name }}</h2>
+        <div class="product-grid">
+            {{#each productsBakery}}
+            <div class="grid__item"> 
+                <a href="/mixes/{{_id}}">
+                    <img src="{{ mainImage }}" alt="">
+                    <p>{{ title }}</p>
+                </a>
+            </div>
+            {{/each}}  
+        </div>
+    </div>
+</div>
+<div class="product-section gray last" id="{{confectionery.value}}">
+    <div class="wrapper">  
+        <h2>{{confectionery.name}}</h2>
+        <div class="product-grid">
+            {{#each productsConfectionery}}
+            <div class="grid__item"> 
+                <a href="/mixes/{{_id}}">
+                    <img src="{{ mainImage }}" alt="">
+                    <p>{{ title }}</p>
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

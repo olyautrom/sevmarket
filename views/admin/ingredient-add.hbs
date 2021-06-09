@@ -1,0 +1,26 @@
+<h3>{{ title }}</h3>
+<br/>
+<form action="/admin/ingredients/add?_csrf={{csrf}}" method="POST" enctype="multipart/form-data">
+    <div class="file-field input-field">
+        <div class="btn">
+            <span>Изображение</span>
+            <input type="file" id="image" name="image" accept="image/jpeg, image/jpg, image/png">
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+            <span class="helper-text" data-error="Выберите изображение"></span>
+        </div>
+    </div>
+    <div class="input-field">
+        <input id="title" name="title" type="text" class="validate" required>
+        <label for="title">Название</label>
+        <span class="helper-text" data-error="Введите название"></span>
+    </div>
+    <div class="input-field">
+        <textarea id="description" name="description" class="materialize-textarea validate"
+            required></textarea>
+        <label for="description">Описание</label>
+        <span class="helper-text" data-error="Введите описание"></span>
+    </div>
+    <button class="btn btn-primary">Создать</button>
+</form>

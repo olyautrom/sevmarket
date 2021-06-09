@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col s12 m10">
+    <h3>{{ title }}</h3>
+  </div>
+  <div class="col s12 m2">
+    <a href="/admin/ingredients/add" class="btn-floating btn-large waves-effect waves-light deep-orange lighten-3"><i class="material-icons">add</i></a>
+  </div>
+
+{{#if ingredients.length}}
+<table class="responsive-table striped">
+  <thead>
+    <tr>
+      <th>Изображение</th>
+      <th>Название</th>
+      <th>Описание</th>
+      <th class="right"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each ingredients}}
+    <tr>
+      <td><img src={{ image }} alt="{{ image }}"></td>
+      <td>{{ title }}</td>
+      <td>{{ description }}</td>
+      <td class="right">
+        <a href="/admin/ingredients/{{_id}}/edit?allow=true" class="waves-effect waves-light btn"><i
+            class="material-icons">edit</i></a>
+        <a href="/admin/ingredients/{{_id}}/delete?allow=true" class="waves-effect waves-light btn red"><i
+            class="material-icons">delete</i></a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{else}}
+<p>Ингредиентов нет</p>
+{{/if}}

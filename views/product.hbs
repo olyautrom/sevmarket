@@ -1,0 +1,56 @@
+<div class="wrapper">
+    <ul class="breadcrumb">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/#production">Продукция</a></li>
+        {{#each category}}
+        <li><a href="/{{ value }}">{{ name }}</a></li>
+        {{/each}}
+        <li>{{ title }}</li>
+    </ul>
+    <h1>{{ title }}</h1>
+    <div class="product">
+        <div class="product__img">
+            <div class="product__img-main">
+                <img id="expandedImg" src="{{ product.mainImage }}" alt="">
+            </div>
+            <div class="slick__controls">
+                <button type="button" class="slick-prev"><img src="/image/arrow-left.svg"></button>
+                <button type="button" class="slick-next"><img src="/image/arrow-right.svg"></button>
+            </div>
+            <div class="product__img-slick">
+                {{#each product.images}}
+                    <div class="img__item"><img class="enterImg" src="{{this}}" alt=""></div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="product__text">
+            <p class="product__text-title">Информация о продукте</p>
+            <p class="product__text-description">{{ product.description }}</p>
+            <div class="product__text-info">
+                <div class="info-block">
+                    <p><span class="bold">Состав</span></p>
+                    <p class="light">{{ product.ingredients }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="logistics gray">
+    <div class="wrapper">
+        <h2>Логистика</h2>
+        <div class="logistics-flex">
+            <div class="logistics__left">
+                <div class="info-block">
+                    <p><span class="bold">Упаковка</span></p>
+                    <p class="light">{{ product.package }}</p>
+                </div>
+            </div>
+            <div class="logistics__right">
+                <div class="info-block">
+                    <p><span class="bold">Условия и срок хранения</span></p>
+                    <p class="light">{{ product.conditions }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

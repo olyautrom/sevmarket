@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    {{#if isAuth }}
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="/admin/ingredients">Ингредиенты</a></li>
+        <li class="divider"></li>
+        <li><a href="/admin/mixes">Смеси</a></li>
+        <li class="divider"></li>
+        <li><a href="/admin/prepared-meal">Готовые изделия</a></li>
+    </ul>
+    <nav class="teal lighten-2">
+        <div class="nav-wrapper">
+            <div class="admin-container">
+                <a href="/admin" class="brand-logo">SevMarket</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    {{#if isAdmin }}
+                    <li><a href="/admin/info">Информация</a></li>
+                    {{/if}}
+                    <li><a class="dropdown-trigger" href="#" data-target="dropdown1">Продукция<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a href="/admin/news">Новости</a></li>
+                    {{#if isAdmin }}
+                    <li><a href="/admin/users">Пользователи</a></li>
+                    {{/if}}
+                    <li><a href="/admin/logout">Выйти</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/admin/ingredients">Ингредиенты</a></li>
+        <li><a href="/admin/mixes">Смеси</a></li>
+        <li><a href="/admin/prepared-meal">Готовые изделия</a></li>
+        <li><a href="/admin/news">Новости</a></li>
+        {{#if isAdmin }}
+        <li><a href="/admin/info">Информация</a></li>
+        <li><a href="/admin/users">Пользователи</a></li>
+        {{/if}}
+        <li><a href="/admin/logout">Выйти</a></li>
+    </ul>
+
+
+    {{/if}}
+    <div class="admin-container">
+        {{{ body }}}
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/admin.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+            $(".dropdown-trigger").dropdown();
+        });
+    </script>
+</body>
+
+</html>

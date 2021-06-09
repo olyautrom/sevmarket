@@ -1,0 +1,14 @@
+<h3>Редактировать "{{ info.title }}"</h3>
+<br/>
+<form action="/admin/info/edit?_csrf={{csrf}}" method="POST">
+    <div class="input-field">
+        {{#if info.description}}
+            <p>{{info.description}}</p>
+        {{/if}}
+        <input id="value" name="value" type="text" class="validate" required value="{{ info.value }}">
+        <label for="value">{{ info.title }}</label>
+        <span class="helper-text" data-error="Введите текст"></span>
+    </div>
+    <input type="hidden" name="id" value="{{ info._id }}">
+    <button class="btn btn-primary">Изменить</button>
+</form>

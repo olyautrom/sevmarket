@@ -1,0 +1,59 @@
+<div class="wrapper">
+    <ul class="breadcrumb">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/#production">Продукция</a></li>
+        <li><a href="/prepared-meal">Готовые изделия</a></li>
+        <li>{{ title }}</li>
+    </ul>
+    <h1>{{ title }}</h1>
+    <div class="production-menu">
+        <h5><a href="#{{ porridge.value }}">{{ porridge.name }}</a></h5>
+        <h5><a href="#{{ cheesecake.value }}">{{ cheesecake.name }}</a></h5>
+        <h5><a href="#{{ pancake.value }}">{{ pancake.name }}</a></h5>
+    </div>
+</div>
+<div class="product-section" id="{{ porridge.value }}">
+    <div class="wrapper">
+        <h2>{{ porridge.name }}</h2>
+        <div class="product-grid">
+            {{#each productsPorridge}}
+            <div class="grid__item">
+                <a href="/prepared-meal/breakfast/{{_id}}">
+                    <img src="{{ mainImage }}" alt="">
+                    <p>{{ title }}</p>
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+<div class="product-section gray" id="{{ cheesecake.value }}">
+    <div class="wrapper">
+        <h2>{{ cheesecake.name }}</h2>
+        <div class="product-grid">
+            {{#each productsCheesecake}}
+            <div class="grid__item">
+                <a href="/prepared-meal/breakfast/{{_id}}">
+                    <img src="{{ mainImage }}" alt="">
+                    <p>{{ title }}</p>
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+<div class="product-section" id="{{ pancake.value }}">
+    <div class="wrapper">
+        <h2>{{ pancake.name }}</h2>
+        <div class="product-grid">
+            {{#each productsPancake}}
+            <div class="grid__item">
+                <a href="/prepared-meal/breakfast/{{_id}}">
+                    <img src="{{ mainImage }}" alt="">
+                    <p>{{ title }}</p>
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

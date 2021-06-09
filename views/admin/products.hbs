@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col s12 m10">
+    <h3>{{ title }}</h3>
+  </div>
+  <div class="col s12 m2">
+    <a href="/admin/{{ page }}/add" class="btn-floating btn-large waves-effect waves-light deep-orange lighten-3"><i
+        class="material-icons">add</i></a>
+  </div>
+</div>
+<form action="/admin/{{ page }}?_csrf={{csrf}}" method="POST">
+  <div class="row">
+    <div class="col s10">
+      <div class="input-field">
+        <select id="categoryFilter" name="categoryFilter" required>
+          <option value="" disabled selected>Категория</option>
+          <option value="all">Все</option>
+          {{#each selectCategory}}
+          <option value="{{value}}" {{#if selected}} selected {{/if}}>{{name}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+    <div class="col s2">
+      <button class="btn btn-primary btn-large">Поиск</button>
+    </div>
+  </div>
+</form>
+
+{{#if products.length}}
+<table class="responsive-table striped">
+  <thead>
+    <tr>
+      <th>Изображение</th>
+      <th>Название</th>
+      <th>Информация</th>
+      <th>Категория</th>
+      <th class="right"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each products}}
+    <tr>
+      <td><img src={{ mainImage }} alt="{{ title }}"></td>
+      <td>{{ title }}</td>
+      <td>
+        <p><b>Описание:</b> {{ description }}</p>
+        <p><b>Состав:</b>{{ ingredients }}</p>
+        <p><b>Упаковка:</b>{{ package }}</p>
+        <p><b>Условия и срок хранения:</b>{{ conditions }}</p>
+      </td>
+      <td>{{ pageCategory }}</td>
+      <td class="right">
+        <a href="/admin/{{@root.page}}/{{_id}}/edit?allow=true" class="waves-effect waves-light btn"><i
+            class="material-icons">edit</i></a>
+        <a href="/admin/{{@root.page}}/{{_id}}/delete?allow=true" class="waves-effect waves-light btn red"><i
+            class="material-icons">delete</i></a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{else}}
+<p>Продуктов нет</p>
+{{/if}}

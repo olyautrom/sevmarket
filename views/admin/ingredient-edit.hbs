@@ -1,0 +1,28 @@
+<h3>Редактировать ингредиент "{{ ingredient.title }}"</h3>
+<br/>
+<form action="/admin/ingredients/edit?_csrf={{csrf}}" method="POST" enctype="multipart/form-data">
+    <div class="file-field input-field">
+        <div class="btn">
+            <span>Заменить изображение</span>
+            <input type="file" id="image" name="image" accept="image/jpeg, image/jpg, image/png">
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+            <span class="helper-text" data-error="Выберите изображение"></span>
+        </div>
+    </div>
+    <div class="input-field">
+        <input id="title" name="title" type="text" class="validate" required value="{{ ingredient.title }}">
+        <label for="title">Название</label>
+        <span class="helper-text" data-error="Введите название"></span>
+    </div>
+    <div class="input-field">
+        <textarea id="description" name="description" class="materialize-textarea validate"
+            required>{{ ingredient.description }}</textarea>
+        <label for="description">Описание</label>
+        <span class="helper-text" data-error="Введите описание"></span>
+    </div>
+
+    <input type="hidden" name="id" value="{{ ingredient._id }}">
+    <button class="btn btn-primary">Изменить</button>
+</form>

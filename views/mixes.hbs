@@ -1,0 +1,28 @@
+<div class="wrapper">
+    <ul class="breadcrumb">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/#production">Продукция</a></li>
+        <li>{{ title }}</li>
+    </ul>
+    <h1>{{ title }}</h1>
+    <div class="mixes-page">
+        <div class="production-items">
+            <div class="production__item">
+                <a href="/mixes/inner#{{ bakery.value }}">
+                    <div class="green-hover">
+                        <img src="/image/mixes-bread.png" alt="">
+                    </div>
+                    <h3>{{ bakery.name }}</h3>
+                </a>
+            </div>
+            <div class="production__item">
+                <a href="/mixes/inner#{{ confectionery.value }}">
+                    <div class="green-hover">
+                        <img src="/image/mixes-cake.png" alt="">
+                    </div>
+                    <h3>{{ confectionery.name }}</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

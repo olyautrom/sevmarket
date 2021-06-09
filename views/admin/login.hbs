@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <div class="admin-forms">
+        <h3>{{ title }}</h3>
+        {{#if error}}
+            <p class="alert"> {{ error }}</p>
+        {{/if}}
+
+        <form action="/admin/login?_csrf={{csrf}}" method="POST">
+            <div class="input-field">
+                <input id="login" name="login" type="text" class="validate" required min="3">
+                <label for="login">Логин</label>
+                <span class="helper-text" data-error="Введите логин"></span>
+            </div>
+            <div class="input-field">
+                <input id="password" name="password" type="password" class="validate" required>
+                <label for="password">Пароль</label>
+                <span class="helper-text" data-error="Введите пароль"></span>
+            </div>
+            <button class="btn btn-primary">Войти</button>
+        </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/admin.js"></script>
+
+</body>
+
+</html>

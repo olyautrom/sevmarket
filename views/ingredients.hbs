@@ -1,0 +1,20 @@
+<div class="wrapper">
+    <ul class="breadcrumb">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/#production">Продукция</a></li>
+        <li>{{ title }}</li>
+    </ul>
+    <h1>{{ title }}</h1>
+    <p class="promo__text">{{ textIngredient }}</p>
+    {{#if ingredients.length}}
+    <div class="ingredients-items">
+        {{#each ingredients}}
+        <div class="ingredients__item">
+            <img src="{{ image }}" alt="">
+            <p>{{ title }}</p>
+            <p>{{ description }}</p>
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+</div>

@@ -1,0 +1,25 @@
+<h3>Редактировать пользователя {{user.login}}</h3>
+
+<form action="/admin/users/edit?_csrf={{csrf}}" method="POST">
+    <div class="input-field">
+        <input id="login" name="login" type="text" class="validate" required min="3" value="{{user.login}}">
+        <label for="login">Логин</label>
+        <span class="helper-text" data-error="Введите логин"></span>
+    </div>
+    <div class="input-field">
+        <input id="password" name="password" type="password" class="validate">
+        <label for="password">Заменить пароль</label>
+        <span class="helper-text" data-error="Введите пароль"></span>
+    </div>
+    <div class="input-field">
+        <div class="input-field col s12">
+            <select id="role" name="role">
+                <option value="" disabled selected>Права доступа</option>
+                <option value="admin" {{#if user.isAdmin}}selected{{/if}}>Админ</option>
+                <option value="editor" {{#if user.isEditor}}selected{{/if}}>Редактор</option>
+            </select>
+        </div>
+    </div>
+    <input type="hidden" name="id" value={{user._id}}>
+    <button class="btn btn-primary">Сохранить</button>
+</form>

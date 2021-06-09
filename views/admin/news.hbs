@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col s12 m10"><h3>{{ title }}</h3></div>
+    <div class="col s12 m2"><a href="/admin/news/add" class="btn-floating btn-large waves-effect waves-light deep-orange lighten-3"><i class="material-icons">add</i></a></div>
+</div>
+
+{{#if news.length}}
+ <table class="responsive-table striped">
+        <thead>
+          <tr>
+              <th>Название</th>
+              <th>Изображение</th>
+              <th>Дата</th>
+              <th>Аннотация</th>
+              <th>Текст</th>
+              <th class="right"></th>
+          </tr>
+        </thead>
+        
+        <tbody>
+           {{#each news}}
+          <tr>
+            <td>{{ title }}</td>
+            <td><img src={{ newsImage }} alt="{{ newsImage }}"</td>
+            <td>{{ date }}</td>
+            <td>{{ annotation }}</td>
+            <td>{{ content }} </td>
+            <td class="right">
+                <a href="/admin/news/{{_id}}/edit?allow=true" class="waves-effect waves-light btn"><i class="material-icons">edit</i></a>
+                <a href="/admin/news/{{_id}}/delete?allow=true" class="waves-effect waves-light btn red"><i class="material-icons">delete</i></a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+{{else}}
+<p>Новостей нет</p>
+{{/if}}

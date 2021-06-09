@@ -1,0 +1,27 @@
+<h3>{{ title }}</h3>
+<br/>
+{{#if error}}
+    <p class="alert"> {{ error }}</p>
+{{/if}}
+<form action="/admin/users/add?_csrf={{csrf}}" method="POST">
+    <div class="input-field">
+        <input id="login" name="login" type="text" class="validate" required min="3">
+        <label for="login">Логин</label>
+        <span class="helper-text" data-error="Введите логин"></span>
+    </div>
+    <div class="input-field">
+        <input id="password" name="password" type="password" class="validate" required>
+        <label for="password">Пароль</label>
+        <span class="helper-text" data-error="Введите пароль"></span>
+    </div>
+    <div class="input-field">
+        <div class="input-field col s12">
+            <select id="role" name="role" required>
+                <option value="" disabled selected>Права доступа</option>
+                <option value="admin">Админ</option>
+                <option value="editor">Редактор</option>
+            </select>
+        </div>
+    </div>
+    <button class="btn btn-primary">Создать</button>
+</form>
