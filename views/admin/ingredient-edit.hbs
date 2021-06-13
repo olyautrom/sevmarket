@@ -2,14 +2,14 @@
 <br/>
 <form action="/admin/ingredients/edit?_csrf={{csrf}}" method="POST" enctype="multipart/form-data">
     <div class="file-field input-field">
-        <div class="btn">
-            <span>Заменить изображение</span>
-            <input type="file" id="image" name="image" accept="image/jpeg, image/jpg, image/png">
+        <span><label>Изображение</label></span>
+        <div class="input-image"></div>
+        <div class="preloaded-images">
+            {{#if ingredient.image}}
+                <div class="preloaded-image" style="display: none;" data-id="0" data-src={{ingredient.image}}></div>
+            {{/if}}
         </div>
-        <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-            <span class="helper-text" data-error="Выберите изображение"></span>
-        </div>
+        <span class="helper-text" data-error="Выберите изображение"></span>
     </div>
     <div class="input-field">
         <input id="title" name="title" type="text" class="validate" required value="{{ ingredient.title }}">

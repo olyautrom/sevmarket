@@ -33,7 +33,7 @@ router.get('/:id/edit', auth, async (req, res) => {
         }
     })
 })
-router.post('/edit', auth, upload.single('newsImage'), async (req, res) => {
+router.post('/edit', auth, upload.single('newsImage[]'), async (req, res) => {
     const {id} = req.body
     try {    
         delete req.body.id;
@@ -44,13 +44,19 @@ router.post('/edit', auth, upload.single('newsImage'), async (req, res) => {
             annotation: req.body.annotation,
             content: req.body.content
         }
-        console.log(toChange.date);
-        if (req.file) {
+
+        const imageDeleted = !req.body.newsImagePreloaded || req.body.newsImagePreloaded.length === 0;
+        const image = imageDeleted ? undefined : news.newsImage;
+        const newImage = req.files && req.files['newsImage[]'] && req.files['newsImage[]'][0];
+
+        if (imageDeleted || newImage) {
             fs.unlink('./public' + news.newsImage, (err) => {
                 if (err) throw err;
             });
-            toChange.newsImage = '/ugc_images/' + req.file.filename;
         }
+
+        toChange.newsImage = newImage ? '/ugc_images/' + newImage.filename : image;
+
         Object.assign(news, toChange);
         await news.save();
         res.redirect('/admin/news');
@@ -86,7 +92,7 @@ router.get('/add', auth, async (req, res) => {
     })
 })
 
-router.post('/add', auth, upload.single('newsImage'), async (req, res) => {
+router.post('/add', auth, upload.single('newsImage[]'), async (req, res) => {
     try {
         const { title, date, annotation, content } = req.body
         if (req.file) {

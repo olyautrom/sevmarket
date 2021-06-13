@@ -12,27 +12,14 @@
         <span class="helper-text" data-error="Введите описание"></span>
     </div>
     <div class="file-field input-field">
-        <div class="btn">
-            <span>Главное изображение</span>
-            <input type="file" id="mainImage" name="mainImage" accept="image/jpeg, image/jpg, image/png" required>
-        </div>
-        <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-            <span class="helper-text" data-error="Выберите изображение"></span>
-        </div>
+        <span><label>Главное изображение продукта</label></span>
+        <div class="input-main-image"></div>
+        <span class="helper-text" data-error="Выберите главное изображение для продукта"></span>
     </div>
     <div class="file-field input-field">
-        <div class="btn">
-            <span>Все изображения</span>
-            <input type="file" id="images" name="images" accept="image/jpeg, image/jpg, image/png" multiple>
-        </div>
-        <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-            <span class="helper-text" data-error="Выберите изображения"></span>
-        </div>
-    </div>
-    <div class="multiple-file-preview" data-for="images">
-        <ul class="multiple-file-preview__content sortable"></ul>
+        <span><label>Все изображения продукта</label></span>
+        <div class="input-images"></div>
+        <span class="helper-text" data-error="Выберите изображения для продукта"></span>
     </div>
     <div class="input-field">
         <input id="ingredients" name="ingredients" type="text" class="validate" required>

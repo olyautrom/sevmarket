@@ -10,8 +10,7 @@ const productSchema = new Schema({
     required: true
   },
   mainImage: {
-    type: String,
-    required: true
+    type: String
   },
   images: {
     type: Array
