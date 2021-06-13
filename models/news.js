@@ -10,8 +10,7 @@ const newsSchema = new Schema({
     required: true
   },
   newsImage: {
-    type: String,
-    required: true
+    type: String
   },
   annotation: {
     type: String,

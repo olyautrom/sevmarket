@@ -26,7 +26,7 @@ router.get('/:id/edit', auth, async (req, res) => {
         ingredient
     })
 })
-router.post('/edit', auth, upload.single('image'), async (req, res) => {
+router.post('/edit', auth, upload.single('image[]'), async (req, res) => {
     try {
         const { id } = req.body
         delete req.body.id;
@@ -35,12 +35,19 @@ router.post('/edit', auth, upload.single('image'), async (req, res) => {
             title: req.body.title,
             description: req.body.description
         }
-        if (req.file) {
+
+        const imageDeleted = !req.body.imagePreloaded || req.body.imagePreloaded.length === 0;
+        const image = imageDeleted ? undefined : ingredient.image;
+        const newImage = req.files && req.files['image[]'] && req.files['image[]'][0];
+
+        if (imageDeleted || newImage) {
             fs.unlink('./public' + ingredient.image, (err) => {
                 if (err) throw err;
             });
-            toChange.image = '/ugc_images/' + req.file.filename;
         }
+
+        toChange.image = newImage ? '/ugc_images/' + newImage.filename : image;
+
         Object.assign(ingredient, toChange);
         await ingredient.save();
         res.redirect('/admin/ingredients');
@@ -76,7 +83,7 @@ router.get('/add', auth, async (req, res) => {
     });
 })
 
-router.post('/add', auth, upload.single('image'), async (req, res) => {
+router.post('/add', auth, upload.single('image[]'), async (req, res) => {
     try {
         const { title, description } = req.body;
         if (req.file) {

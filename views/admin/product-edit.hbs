@@ -12,25 +12,25 @@
         <span class="helper-text" data-error="Введите описание"></span>
     </div>
     <div class="file-field input-field">
-        <div class="btn">
-            <span>Заменить главное изображение</span>
-            <input type="file" id="mainImage" name="mainImage" accept="image/jpeg, image/jpg, image/png">
+        <span><label>Главное изображение продукта</label></span>
+        <div class="input-main-image"></div>
+        <div class="preloaded-images">
+            {{#if product.mainImage}}
+                <div class="preloaded-image" style="display: none;" data-id="0" data-src={{product.mainImage}}></div>
+            {{/if}}
         </div>
-        <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-            <span class="helper-text" data-error="Выберите изображение"></span>
-        </div>
+        <span class="helper-text" data-error="Выберите главное изображение для продукта"></span>
     </div>
-    {{!-- <div class="file-field input-field">
-        <div class="btn">
-            <span>Все изображения</span>
-            <input type="file" id="images" name="images" accept="image/jpeg, image/jpg, image/png" multiple>
+    <div class="file-field input-field">
+        <span><label>Все изображения продукта</label></span>
+        <div class="input-images"></div>
+        <div class="preloaded-images">
+            {{#each product.images}}
+                <div class="preloaded-image" style="display: none;" data-id={{@index}} data-src={{this}}></div>
+            {{/each}}
         </div>
-        <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-            <span class="helper-text" data-error="Выберите изображения"></span>
-        </div>
-    </div> --}}
+        <span class="helper-text" data-error="Выберите изображения для продукта"></span>
+    </div>
     <div class="input-field">
         <input id="ingredients" name="ingredients" type="text" class="validate" required value="{{ product.ingredients }}">
         <label for="ingredients">Состав</label>
