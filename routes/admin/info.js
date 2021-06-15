@@ -2,8 +2,6 @@ const { Router } = require('express');
 const Info = require('../../models/info');
 const auth = require('../../middleware/auth');
 const role = require('../../middleware/role');
-const upload = require('../../middleware/file');
-const fs = require('fs');
 const router = Router();
 
 

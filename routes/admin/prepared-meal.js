@@ -116,8 +116,8 @@ router.get('/add', auth, async (req, res) => {
 router.post('/add', auth, upload.fields([{ name: 'mainImage[]', maxCount: 1 }, { name: 'images[]', maxCount: 8 }]), async (req, res) => {
     try {
         const { title, description, ingredients, package, conditions, category } = req.body;
-        let images;
         const page = 'prepared-meal';
+        let images;
 
         if (req.files['images[]']) {
             images = req.files['images[]'].map(file => '/ugc_images/' + file.filename);
@@ -151,7 +151,7 @@ router.get('/:id/edit', auth, async (req, res) => {
         title: `Редактировать ${product.title}`,
         layout: 'admin',
         product,
-        selectCategory,
+        selectCategory
     })
 })
 
@@ -174,7 +174,7 @@ router.post('/edit', auth, upload.fields([{ name: 'mainImage[]', maxCount: 1 }, 
         const mainImage = mainImageDeleted ? undefined : product.mainImage;
         const newMainImage = req.files && req.files['mainImage[]'] && req.files['mainImage[]'][0];
 
-        if (mainImageDeleted || newMainImage) {
+        if (product.mainImage && (mainImageDeleted || newMainImage)) {
             fs.unlink('./public' + product.mainImage, (err) => {
                 if (err) throw err;
             });

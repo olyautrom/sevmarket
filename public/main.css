@@ -693,7 +693,7 @@ section {
 .news-items .news__item img {
     width: 100%;
     border-radius: 9px 9px 0 0;
-    max-height: 220px;
+    max-height: 260px;
     object-fit: cover;
 }
 .news-items .news__item .news__item-inner {
@@ -1016,7 +1016,7 @@ ul.breadcrumb li a:hover {
 .slick__controls {
     position: relative;
     height: 90px;
-    margin-bottom: -105px;
+    margin-bottom: -110px;
 }
 .product__img-slick {
     margin: 0 auto;
@@ -1130,6 +1130,54 @@ ul.breadcrumb li a:hover {
 .news-page .news-items .news__item:not(:nth-child(3n)) {
     margin-right: 0px; 
 }
+input, textarea {
+    background: #FFFFFF;
+    box-shadow: inset 1px 1px 4px #39130660;
+    border-radius: 3px;
+    border: none;
+    padding: 10px 17px;
+    margin: 6px 0;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 26px;
+    color: #391306;
+}
+input::placeholder,
+textarea::placeholder {
+    color: #39130690;
+}
+.contacts-form h1 {
+    padding: 80px 0 55px;
+}
+.contacts-form {
+    margin: auto;
+    max-width: 900px; 
+}
+.contacts-form form {
+    display: flex;
+    flex-direction: column;
+}
+.contacts-form .policy {
+    text-align: center;
+    padding: 10px 0 20px;
+}
+.contacts-form .policy a {
+    color: #FFC140;
+}
+.contacts-form .button {
+    background-color: #391306;
+    padding: 12px 40px;
+    margin: auto;
+}
+.contacts-form .button:hover {
+    color: #FFC140;
+}
+.success {
+    color: green;
+}
+
 @media screen and (max-width: 1020px) {
 
     .current_news-page .news__item img{
@@ -1513,7 +1561,5 @@ ul.breadcrumb li a:hover {
     }
 }
 
-.production-menu.test {
-    margin: 0;
-    padding: 40px 0 0;
-}
+
+

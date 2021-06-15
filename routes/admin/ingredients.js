@@ -38,9 +38,9 @@ router.post('/edit', auth, upload.single('image[]'), async (req, res) => {
 
         const imageDeleted = !req.body.imagePreloaded || req.body.imagePreloaded.length === 0;
         const image = imageDeleted ? undefined : ingredient.image;
-        const newImage = req.files && req.files['image[]'] && req.files['image[]'][0];
+        const newImage = req.file;
 
-        if (imageDeleted || newImage) {
+        if (ingredient.image && (imageDeleted || newImage)) {
             fs.unlink('./public' + ingredient.image, (err) => {
                 if (err) throw err;
             });

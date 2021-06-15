@@ -36,6 +36,7 @@ router.get('/:id', info, async (req, res) => {
     try {
         const category = new Array();
         const product = await Product.findById(req.params.id).lean();
+        product.images.unshift(product.mainImage);
         category[0] = {
             value: 'prepared-meal',
             name: 'Готовые изделия'

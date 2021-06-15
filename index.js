@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoMarket = require('connect-mongodb-session')(session);
 const csrf = require('csurf');
+var compression = require('compression')
 
 const indexRoutes = require('./routes/index');
 const contactsRoutes = require('./routes/contacts');
@@ -27,6 +28,7 @@ const adminUsersRoutes = require('./routes/admin/users');
 const adminNewsRoutes = require('./routes/admin/news');
 const adminIngredientsRoutes = require('./routes/admin/ingredients');
 const adminInfoRoutes = require('./routes/admin/info');
+const adminRequestRoutes = require('./routes/admin/request');
 const adminMixesRoutes = require('./routes/admin/mixes');
 const adminPreparedMealRoutes = require('./routes/admin/prepared-meal');
 
@@ -62,6 +64,7 @@ app.use(session({
 }))
 
 app.use(csrf())
+app.use(compression())
 app.use(varMiddleware);
 
 app.use('/', indexRoutes);
@@ -81,12 +84,13 @@ app.use('/admin/users', adminUsersRoutes);
 app.use('/admin/news', adminNewsRoutes);
 app.use('/admin/ingredients', adminIngredientsRoutes);
 app.use('/admin/info', adminInfoRoutes);
+app.use('/admin/request', adminRequestRoutes);
 app.use('/admin/mixes', adminMixesRoutes);
 app.use('/admin/prepared-meal', adminPreparedMealRoutes);
 
 app.use(errorHandler);
 
-const PORT = process.env.Port || 2000;
+const PORT = process.env.Port || 3000;
 
 async function start() {
     try {

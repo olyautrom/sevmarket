@@ -39,6 +39,8 @@ router.get('/:id', info, async (req, res) => {
     try {
         const category = new Array();
         const product = await Product.findById(req.params.id).lean();
+        product.images.unshift(product.mainImage);
+
         category[0] = {
             value: "mixes",
             name: "Смеси"
@@ -58,8 +60,8 @@ router.get('/:id', info, async (req, res) => {
 
         res.render('product', {
             title: `${product.title}`,
-            product,
-            category
+            category,
+            product
         })
     } catch (e) {
         console.log(e)

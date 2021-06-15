@@ -71,7 +71,8 @@ menuToggle.addEventListener("change", function(e) {
 
 var slider = tns({
     container: '.product__img-slick',
-    items: 2,
+    items: 3,
+    gutter: 5,
     nav: false,
     prevButton: '.slick-prev',
     nextButton: '.slick-next',
@@ -80,7 +81,6 @@ var slider = tns({
     responsive: {
       640: {
         gutter: 20,
-        items: 3,
 
       }
     }

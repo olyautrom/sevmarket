@@ -56,16 +56,20 @@ router.get('/add', auth, async (req, res) => {
     });
 })
 
-router.post('/add', auth, upload.fields([{ name: 'mainImage', maxCount: 1 }, { name: 'images', maxCount: 8 }]), async (req, res) => {
+router.post('/add', auth, upload.fields([{ name: 'mainImage[]', maxCount: 1 }, { name: 'images[]', maxCount: 8 }]), async (req, res) => {
     try {
         const { title, description, ingredients, package, conditions, category } = req.body;
         const page = 'mixes';
-        const images = new Array();
+        let images;
+        
+        if (req.files['images[]']) {
+            images = req.files['images[]'].map(file => '/ugc_images/' + file.filename);
+        }
 
         const product = new Product({
             title, description, ingredients, package, conditions, category, page,
-            mainImage: '/ugc_images/' + req.files['mainImage'][0].filename,
-            images: req.files['images']
+            mainImage: req.files['mainImage[]'] ? '/ugc_images/' + req.files['mainImage[]'][0].filename : undefined,
+            images
         });
         await product.save();
         res.redirect('/admin/mixes');
@@ -94,7 +98,7 @@ router.get('/:id/edit', auth, async (req, res) => {
     })
 })
 
-router.post('/edit', auth, upload.single('mainImage'), async (req, res) => {
+router.post('/edit', auth, upload.fields([{ name: 'mainImage[]', maxCount: 1 }, { name: 'images[]', maxCount: 8 }]), async (req, res) => {
     try {
         const { id } = req.body;
         delete req.body.id;
@@ -108,12 +112,29 @@ router.post('/edit', auth, upload.single('mainImage'), async (req, res) => {
             category: req.body.category,
             page: 'mixes',
         }
-        if (req.file) {
+        
+        const mainImageDeleted = !req.body.mainImagePreloaded || req.body.mainImagePreloaded.length === 0;
+        const mainImage = mainImageDeleted ? undefined : product.mainImage;
+        const newMainImage = req.files && req.files['mainImage[]'] && req.files['mainImage[]'][0];
+
+        if (product.mainImage && (mainImageDeleted || newMainImage)) {
             fs.unlink('./public' + product.mainImage, (err) => {
                 if (err) throw err;
             });
-            toChange.mainImage = '/ugc_images/' + req.file.filename;
         }
+
+        toChange.mainImage = newMainImage ? '/ugc_images/' + newMainImage.filename : mainImage;
+
+        const preloadedImageIds = req.body.imagesPreloaded || [];
+        const images = product.images.filter((image, index) => preloadedImageIds.indexOf(index.toString()) > -1);
+        const newImages = req.files && req.files['images[]'];
+
+        toChange.images = images;
+    
+        if (newImages) {
+            toChange.images = images.concat(newImages.map(file => '/ugc_images/' + file.filename));
+        }
+
         Object.assign(product, toChange);
         await product.save();
         res.redirect('/admin/mixes');
