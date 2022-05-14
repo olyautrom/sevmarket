@@ -2,7 +2,9 @@
     <div class="col s12 m10"><h3>{{ title }}</h3></div>
     <div class="col s12 m2"><a href="/admin/users/add" class="user-add btn-floating btn-large waves-effect waves-light deep-orange lighten-3"><i class="material-icons">add</i></a></div>
 </div>
-
+{{#if error}}
+  <p class="alert"> {{ error }}</p>
+{{/if}}
 {{#if users.length}}
  <table class="responsive-table striped">
         <thead>

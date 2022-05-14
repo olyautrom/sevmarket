@@ -12,7 +12,8 @@ router.get('/', auth, role, async (req, res) => {
     res.render('admin/users', {
         title: 'Пользователи',
         layout: 'admin',
-        users
+        users,
+        error: req.flash('error'),
     })
 })
 router.get('/:id/edit', auth, role, async (req, res) => {
@@ -53,9 +54,14 @@ router.post('/edit', auth, role, async (req, res) => {
 
 router.get('/:id/delete', auth, role, async (req, res) => {
     try {
-        await Admin.deleteOne({
-            _id: req.params.id
-        });
+        if (req.session.admin._id == req.params.id) {
+            req.flash('error', 'Вы не можете удалить свою учетную запись, обратитесь к администратору');
+            res.redirect('/admin/users');
+        } else {
+            await Admin.deleteOne({
+                _id: req.params.id
+            });
+        }
         res.redirect('/admin/users');
     } catch (e) {
         console.log(e);

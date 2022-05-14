@@ -7,7 +7,6 @@ const router = Router();
 router.get('/', auth, async (req, res) => {
     const requestNew = await Request.find({ status: true}).lean();
     const request = await Request.find({ status: false}).lean();
-    console.log(request);
     res.render('admin/request', {
         title: 'Заявки',
         layout: 'admin',

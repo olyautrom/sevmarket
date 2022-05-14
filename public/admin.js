@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 [
     ['.input-images', 'images', 'imagesPreloaded', 8, false],
-    ['.input-main-image', 'mainImage', 'mainImagePreloaded', 1, false],
+    ['.input-main-image', 'mainImage', 'mainImagePreloaded', 1, true],
     ['.input-image', 'image', 'imagePreloaded', 1, true],
     ['.input-news-image', 'newsImage', 'newsImagePreloaded', 1, true],
 ].forEach(function(data) {
