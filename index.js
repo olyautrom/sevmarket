@@ -35,7 +35,7 @@ const adminPreparedMealRoutes = require('./routes/admin/prepared-meal');
 const varMiddleware = require('./middleware/variables');
 const errorHandler = require('./middleware/error');
 
-const MONGODB_URI = `mongodb+srv://sevmarket:ZOXgjezCia6QXPPi@cluster0.kcmnd.mongodb.net/sevmarket`;
+const MONGODB_URI = ``;
 
 const app = express();
 
